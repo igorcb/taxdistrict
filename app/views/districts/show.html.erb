@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"><%= @district.name %></h2>
+  </div>
+
+  <div class="panel-body">
+
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Destinos</div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table id="list_table_price" class="table table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Destino</th>
+            <th>Valor</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @district.origins.each do |rate| %>
+            <tr>
+              <td><%= rate.id %></td>
+              <td><%= rate.target.name %></td>
+              <td><%= rate.price.to_f %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>    
+  </div>
+</div>

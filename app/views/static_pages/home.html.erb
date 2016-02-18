@@ -1,0 +1,33 @@
+<%# provide(:title, "Home") %>
+<!-- 
+<div class="center jumbotron">
+	<h1>Welcome to Segmentation</h1>
+	
+	<h2>
+  	This is the home page for the
+  	<a href="https://ancient-brushlands-82263.herokuapp.com/">Challenge Dev - </a>
+  	Segmetation Application.
+	</h2>
+	
+	<%#= link_to "New Contact", new_contact_path, class: "btn btn-lg btn-primary" %>
+</div>
+ -->
+<section class="sage-related-products">
+  <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+          <div class="cta-product cta-product-sage well well-sage module">
+              <% if !user_signed_in? %>
+                <%= link_to 'Login', new_user_session_path, class: "btn btn-primary btn-lg btn-block" %>
+              <% end %>
+              <a href="servostaxi.com.br" class="media">
+                  <div class="media-left">
+                  	
+                  </div>
+                  <div class="media-body">
+                    <%= image_tag("compromisso_va_de_servos.jpg", alt: "Compromisso vá de sevos") %>
+                  </div>
+              </a>
+          </div>
+      </div>
+  </div>
+</section>

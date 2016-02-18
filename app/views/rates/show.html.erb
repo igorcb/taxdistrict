@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Tarifa do Bairro</h2>
+  </div>
+
+  <div class="panel-body">
+		<p>
+		  <strong>Origem:</strong>
+		  <%= @rate.origin.name %>
+		</p>
+
+		<p>
+		  <strong>Destino:</strong>
+		  <%= @rate.target.name %>
+		</p>
+
+		<p>
+		  <strong>Valor:</strong>
+		  <%= @rate.price %>
+		</p>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= link_to 'Editar',  edit_rate_path(@rate) , class: "btn btn-primary" %>
+  <%= link_to 'Listar Todos', rates_path, class: "btn btn-default" %>
+</div>
+

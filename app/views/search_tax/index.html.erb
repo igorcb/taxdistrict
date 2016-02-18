@@ -1,0 +1,68 @@
+<%= form_tag({:controller => "search_tax", :action => "search"}, :method => "get", :remote => true) do |f| %>
+
+  <div class="center form-group">
+    <%= label_tag "rate[district_origin_id]", "ORIGEM:" %>
+    <%= autocomplete_field_tag 'rate[district_origin_id]', '', autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase"  %>
+    <%= label_tag "rate[district_origin_id]", "DESTINO:" %>
+    <%= autocomplete_field_tag 'rate[district_target_id]', '', autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase"  %>    
+    <%= submit_tag("[+] Consulta", id: "soma_registro", class: "btn btn-success btn-sm") %> 
+    
+  </div>
+
+<% end %>
+
+
+
+<div id="messages"></div>
+<br />  
+
+    <div class="table-responsive">
+      <table id="list_table_price" class="table table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Origem</th>
+            <th>Destino</th>
+            <th>Valor</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+
+        </tbody>
+      </table>
+    </div>    
+
+<div id="result_soma"></div>
+
+                        
+<script type="text/javascript">
+  
+Number.prototype.formatMoney = function(c, d, t){
+var n = this, 
+    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+    d = d == undefined ? "." : d, 
+    t = t == undefined ? "," : t, 
+    s = n < 0 ? "-" : "", 
+    i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+    j = (j = i.length) > 3 ? j % 3 : 0;
+   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+ };
+
+
+function sumPrice() {
+  var elements = document.getElementsByClassName('quantity');
+  var sum = 0;
+
+  for (i=0;i< elements.length;i++) {
+    sum = sum + parseFloat(elements[i].innerHTML);
+    };
+  
+  $('#result_soma').html("<div class='alert alert-success center'><strong>Total: "+sum.formatMoney(2, ',', '.')+"</strong></div>");
+ 
+
+}
+</script>
+

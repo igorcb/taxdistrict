@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taxdistrict</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "picturefill-0161fa48.js", :async => true  %>
+  <%#= javascript_include_tag 'autocomplete-rails.js' %>
+  <%= csrf_meta_tags %>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="https://roots.io/app/themes/roots/dist/images/favicon-sage.ico">
+        <title>Servos Taxi</title>
+        <style type="text/css">.tk-lft-etica{font-family:"lft-etica",sans-serif;}</style>
+        <script>try{Typekit.load();}catch(e){}</script>
+        <style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style>
+
+</head>
+  
+<body class="page page-id-128 page-parent page-template page-template-template-sage page-template-template-sage-php sage brand-sage full sage">
+  <%= render 'layouts/header' %>
+  
+        <div class="wrap container" role="document">
+        <div class="content row">
+        <main class="main" role="main">
+  
+        <div class="container">
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <% end %>
+          <%= yield %>
+        </div>
+
+</body>
+</html>

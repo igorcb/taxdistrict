@@ -1,0 +1,16 @@
+
+<%= form_for @district, html: {multipart: true, role: "form" } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control"  %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit "Salvar", class: "btn btn-primary" %>
+    <%= link_to "Exibir",  district_path(@district), class: "btn btn-info" if !@district.new_record? %>
+    <%= link_to "Listar Todos", districts_path, class: "btn btn-default" %>
+  </div>
+
+<% end %>
