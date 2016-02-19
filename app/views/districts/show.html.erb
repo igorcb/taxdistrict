@@ -22,10 +22,10 @@
         </thead>
 
         <tbody>
-          <% @district.origins.each do |rate| %>
+          <% @district.target_order.each do |rate| %>
             <tr>
               <td><%= rate.id %></td>
-              <td><%= rate.target.name %></td>
+              <td><%= link_to rate.target.name, rate %> </td>
               <td><%= rate.price.to_f %></td>
             </tr>
           <% end %>
