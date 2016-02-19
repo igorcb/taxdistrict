@@ -16,8 +16,7 @@
         <tbody>
           <% @districts.each do |district| %>
             <tr>
-              <td><%= district.name %></td>
-              <td><%= link_to 'Show', district %></td>
+              <td><%= link_to district.name, district  %></td>
               <td><%= link_to 'Edit', edit_district_path(district) %></td>
               <td><%= link_to 'Destroy', district, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
