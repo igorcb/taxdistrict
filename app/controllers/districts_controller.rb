@@ -2,7 +2,7 @@ class DistrictsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_district, only: [:show, :edit, :update, :destroy]
 
-  autocomplete :district, :name
+  autocomplete :district, :name, :full => true
 
   # GET /districts
   # GET /districts.json
