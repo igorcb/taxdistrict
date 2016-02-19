@@ -4,6 +4,7 @@ class Rate < ActiveRecord::Base
 
 	validates :district_origin_id, presence: true
 	validates :district_target_id, presence: true
-
+  validates :price, presence: true
+  
 	validates_uniqueness_of :district_origin_id, :scope => [:district_target_id]
 end
