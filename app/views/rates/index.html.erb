@@ -18,8 +18,8 @@
           <% @rates.each do |rate| %>
             <tr>
               <td><%= rate.id %></td>
-              <td><%= rate.origin.name %></td>
-              <td><%= rate.target.name %></td>
+              <td><%= link_to rate.origin.name, rate.origin %></td>
+              <td><%= link_to rate.target.name, rate.target %></td>
               <td><%= rate.price.to_f %></td>
               <td><%= link_to 'Show', rate %></td>
               <td><%= link_to 'Edit', edit_rate_path(rate) %></td>
