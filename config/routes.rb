@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   
-  resources :table_prices
+  resources :table_prices do
+    member do 
+      get :confirm
+      #post :confirm
+    end
+  end
+
+  #match '/table_prices/confirm/:id', :controller=>'table_prices', :action => 'confirm', via: [:get, :post]
+  #match '/dashboard_agent', :controller => 'static_pages', :action => 'dashboard_agent', via: [:get, :post]
   resources :rates
   root 'static_pages#home'
 

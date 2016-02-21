@@ -23,7 +23,10 @@
               <td><%= link_to table_price.target.name, table_price.target %></td>
               <td><%= table_price.price.to_f %></td>
               <% if current_user.admin? %>
-                <td><%= link_to("Confirmar", "#", class: 'btn btn-success btn-sm' )%></td>
+                <td><%#= link_to("Confirmar", :action => :confirm, :id => table_price.id, class: 'btn btn-success btn-sm' )%>
+                <%= link_to("Confirmar", confirm_table_price_path(table_price), class: 'btn btn-success btn-sm' )%>
+                  
+                </td>
               <% end %>
             </tr>
           <% end %>

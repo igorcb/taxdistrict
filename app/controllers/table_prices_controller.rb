@@ -1,6 +1,6 @@
 class TablePricesController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_table_price, only: [:show, :edit, :update, :destroy]
+  before_action :set_table_price, only: [:show, :edit, :update, :destroy, :confirm]
   autocomplete :district, :name, :full => true
   before_filter :load_all
 
@@ -17,7 +17,6 @@ class TablePricesController < ApplicationController
     @table_price.district_origin_id = origin.id
     @table_price.district_target_id = target.id
     @table_price.price = params[:table_price][:price].to_f
-    #@table_price.rate_exist?(origin.id, target.id)
     if @table_price.save
       #
     else
@@ -31,6 +30,11 @@ class TablePricesController < ApplicationController
   def destroy
     @table_price.destroy
     respond_to :js
+  end
+
+  def confirm
+    @table_price.confirm
+    redirect_to table_prices_path
   end
 
   private

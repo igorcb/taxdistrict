@@ -22,4 +22,15 @@ class TablePrice < ActiveRecord::Base
 			errors.add(:district_origin_id, " and destination are already registered or confirmed.")
 		end
 	end
+
+	def confirm
+    ActiveRecord::Base.transaction do
+    	origin = District.find(self.district_origin_id)
+    	target = District.find(self.district_target_id)
+      price  = self.price
+      Rate.create!(district_origin_id: self.district_origin_id, district_target_id: self.district_target_id, price: price)
+      TablePrice.update(self.id, confirmed: true)
+    end
+
+	end
 end
