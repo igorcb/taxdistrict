@@ -9,7 +9,8 @@
   $("#message").append("<div class='alert alert-success'>Origem e destino adicionado com sucesso.</div>");
   $(":input:not(input[type=submit])").val("");
   $("#messages").show(300);
-  $("#list_table_price").append("<tr><td><%= @rate.id %></td><td><%= @rate.origin.name %></td><td><%= @rate.target.name %></td><td class='quantity'><%= @rate.price.to_f %></td></tr>")
+  $("#list_table_price").append("<%= j( render "rate", rate: @rate ) %>")
+  
   $("#result_soma").append("");
   sumPrice();
 <% end -%>
