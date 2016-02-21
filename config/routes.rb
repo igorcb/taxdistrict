@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :table_prices
   resources :rates
   root 'static_pages#home'
 

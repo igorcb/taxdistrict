@@ -7,14 +7,15 @@
           <% if user_signed_in? %>
             <% if current_user.admin? %>
               <li class="menu-item menu-plugins"><%= link_to "Bairros", districts_path %> </li>
+              <li class="menu-item menu-books"><%= link_to "Confirmar Tarifas", table_prices_path  %></li>
               <li class="menu-item menu-books"><%= link_to "Novas Tarifas", rates_path  %></li>
               <li class="menu-item menu-books"><%= link_to "Tarifas", search_tax_index_path  %></li>
               <li class="menu-item menu-podcast"><%= link_to "Usuários", '/'  %></li>
             <% else %>
+              <li class="menu-item menu-books"><%= link_to "Novas Tarifas", table_prices_path  %></li>
               <li class="menu-item menu-books"><%= link_to "Tarifas", search_tax_index_path  %></li>
             <% end %>
           <% end %>
-          <li class="menu-item menu-blog"><%= link_to "Contatos", '/' %></li>
 
           <% if user_signed_in? %>
             <li class="menu-item menu-podcast"><%= link_to "Sair", destroy_user_session_path, method: "delete" %></li>
