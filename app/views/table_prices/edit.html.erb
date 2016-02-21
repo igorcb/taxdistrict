@@ -1,0 +1,20 @@
+<%= form_for(@table_price) do |f| %>
+  <div id="table_price_errors">
+     <%= render 'shared/error_messages', object: f.object %>
+  </div>
+  <div id="table_price_success"></div>
+  <div class="center form-group">
+  </div>
+  <div class="center form-group">
+    <%= f.label :district_origin_id, "Origem" %>
+    <%= text_field_tag :district_origin_id, @table_price.origin.name, disabled: true %>
+    
+    <%= f.label :district_origin_id, "Destino" %>
+    <%= text_field_tag :district_origin_id, @table_price.target.name, disabled: true  %>
+    
+    <%= f.number_field :price, size: 10, placeholder: "0.00"   %>    
+    
+    <%= f.submit("Salvar e Confirmar", class: "btn btn-success btn-sm") %> 
+  </div>
+
+<% end %>

@@ -10,6 +10,10 @@ class TablePricesController < ApplicationController
     @table_price = TablePrice.new
   end
 
+  def edit
+    
+  end
+
   def create
     @table_price = TablePrice.new
     origin = District.find_by_name(params[:table_price][:district_origin_id].upcase) if params[:table_price][:district_origin_id].present? 
@@ -27,13 +31,29 @@ class TablePricesController < ApplicationController
 
   end
 
+  def update
+    respond_to do |format|
+      if @table_price.update(table_price_params)
+        @table_price.confirm    
+        format.html { redirect_to table_prices_path, flash: { success: 'TablePrice was successfully updated and confirmed.' } }
+        format.json { render :index, status: :ok, location: @table_prices }
+      else
+        format.html { render :edit }
+        format.json { render json: @table_price.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   def destroy
     @table_price.destroy
     respond_to :js
   end
 
   def confirm
-    @table_price.confirm
+    @table = TablePrice.find(params[:id])
+    @table.confirm
+    puts ">>>>>>>>>>>>>>>>>>> Confirm do controller"
     redirect_to table_prices_path
   end
 
