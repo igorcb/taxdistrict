@@ -1,0 +1,13 @@
+<%= form_for(@table_price, :remote => true) do |f| %>
+  <div id="table_price_errors">
+     <%= render 'shared/error_messages', object: f.object %>
+  </div>
+  <div id="table_price_success"></div>
+  <div class="center form-group">
+    <%= f.autocomplete_field :district_origin_id, autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase", placeholder: "Informe a origem"  %>
+    <%= f.autocomplete_field :district_target_id, autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase", placeholder: "Informe o destino"  %>
+    <%= f.number_field :price, size: 10, placeholder: "0.00"   %>    
+    <%= f.submit("[+] Cadastrar", class: "btn btn-success btn-sm") %> 
+  </div>
+
+<% end %>
