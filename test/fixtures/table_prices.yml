@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  district_origin_id: MyString
+  district_target_id: 1
+  price: 9.99
+
+two:
+  district_origin_id: MyString
+  district_target_id: 1
+  price: 9.99

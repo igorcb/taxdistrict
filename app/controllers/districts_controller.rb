@@ -2,7 +2,7 @@ class DistrictsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_district, only: [:show, :edit, :update, :destroy]
 
-  autocomplete :district, :name, :full => true
+  autocomplete :district, :name, full: true, limit: 20
 
   # GET /districts
   # GET /districts.json
@@ -57,10 +57,22 @@ class DistrictsController < ApplicationController
   # DELETE /districts/1
   # DELETE /districts/1.json
   def destroy
-    @district.destroy
-    respond_to do |format|
-      format.html { redirect_to districts_url, notice: 'District was successfully destroyed.' }
-      format.json { head :no_content }
+    # @district.destroy
+    #   respond_to do |format|
+    #     format.html { redirect_to districts_url, flash: { success: 'District was successfully destroyed.' } }
+    #     format.json { head :no_content }
+    #   end
+
+    if @district.destroy
+      respond_to do |format|
+        format.html { redirect_to districts_url, flash: { success: 'District was successfully destroyed.' } }
+        format.json { head :no_content }
+      end
+    else
+      @district.errors.full_messages.each do |msg|
+        flash[:danger] = msg  
+      end
+      redirect_to districts_url   
     end
   end
 

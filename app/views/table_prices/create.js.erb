@@ -1,0 +1,13 @@
+<% if @table_price.errors.any? -%>
+  $("#table_price_success").hide(300);
+  $("#table_price_errors").html("<%= j(render 'shared/error_messages', object: @table_price)%>");
+  $("#table_price_errors").show(300);
+<% else -%>
+  $("#table_price_errors").hide(300);
+  $("#table_price_success").empty();
+  $("#table_price_success").append("<div class='alert alert-success'>Successfully created table_price.</div>");
+  $(":input:not(input[type=submit])").val("");
+  $("#table_price_success").show(300);
+  $("#table_price_list").html("<%= j( render "table_prices", table_prices: @table_prices ) %>");
+  
+<% end -%>

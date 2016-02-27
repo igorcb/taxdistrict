@@ -1,0 +1,9 @@
+<tr>
+	<td><%= rate.id %></td>
+	<td><%= rate.origin.name %></td>
+	<td><%= rate.target.name %></td>
+	<td class='quantity'><%= @rate.price.to_f %></td>
+	<% if current_user.admin? %>
+    <td><%= link_to "Editar", edit_rate_path(rate), class: 'btn btn-primary btn-sm' %></td>
+  <% end %>
+</tr>

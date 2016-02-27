@@ -1,6 +1,6 @@
 class SearchTaxController < ApplicationController
   before_filter :authenticate_user!
-  autocomplete :district, :name
+  autocomplete :district, :name, :full => true
 
   #respond_to :html, :js
 
