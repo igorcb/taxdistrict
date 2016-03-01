@@ -1,6 +1,7 @@
 .jumbotron.main-banner {
     background-color: #FBCC02;
-    height: 600px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .brand {

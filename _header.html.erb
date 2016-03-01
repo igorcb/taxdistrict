@@ -1,13 +1,3 @@
-         <% if user_signed_in? %>
-         
-         <div class="jumbotron main-banner">
-          <div class="container">
-            <%= image_tag("logo-small.png", :alt => "Servos Taxi") %>
-          </div>
-        </div>
-        <hr>
-        <% end %>
-
         <!-- Fixed navbar -->
         <nav class="navbar navbar-default navbar-fixed-top shadow">
             <div class="container">
@@ -41,4 +31,12 @@
                 <!-- /.nav-collapse -->
             </div>
         </nav>
-        <!-- /.fixed navbar -->
+	<!-- /.fixed navbar -->
+	<% if user_signed_in? %>
+	<div class="jumbotron main-banner">
+	    <div class="container">
+		<%= image_tag("logo-small.png", :alt => "Servos Taxi") %>
+            </div>
+        </div>
+        <% end %>
+        <hr>
