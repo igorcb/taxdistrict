@@ -1,33 +1,30 @@
-<%# provide(:title, "Home") %>
-<!-- 
-<div class="center jumbotron">
-	<h1>Welcome to Segmentation</h1>
-	
-	<h2>
-  	This is the home page for the
-  	<a href="https://ancient-brushlands-82263.herokuapp.com/">Challenge Dev - </a>
-  	Segmetation Application.
-	</h2>
-	
-	<%#= link_to "New Contact", new_contact_path, class: "btn btn-lg btn-primary" %>
-</div>
- -->
-<section class="sage-related-products">
-  <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-          <div class="cta-product cta-product-sage well well-sage module">
-              <% if !user_signed_in? %>
-                <%= link_to 'Login', new_user_session_path, class: "btn btn-primary btn-lg btn-block" %>
-              <% end %>
-              <a href="/" class="media">
-                  <div class="media-center">
+<div class="container">  
+    
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
 
-                  </div>
-                  <div class="media-body">
-                    <%= image_tag("banner_servos.jpg", alt: "Sempre temos carros e telemarketing disponível") %>
-                  </div>
-              </a>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <%= image_tag "imagem_diferencial.png", class: "img-responsive" %>
+          <div class="carousel-caption">
           </div>
+        </div>
+        <div class="item">
+          <%= image_tag "imagem_familia.png", class: "img-responsive" %>
+          <div class="carousel-caption">
+          </div>
+        </div>
+        <div class="item">
+          <%= image_tag "imagem_app.png", class: "img-responsive" %>
+          <div class="carousel-caption">
+          </div>
+        </div>
       </div>
-  </div>
-</section>
+    </div>
+</div>

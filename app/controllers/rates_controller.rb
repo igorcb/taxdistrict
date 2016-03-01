@@ -26,13 +26,16 @@ class RatesController < ApplicationController
   # POST /rates.json
   def create
     @rate = Rate.new(rate_params)
-
+    origin = District.find_by_name(params[:rate][:district_origin_id].upcase) if params[:rate][:district_origin_id].present? 
+    target = District.find_by_name(params[:rate][:district_target_id].upcase) if params[:rate][:district_target_id].present?  
+    @rate.district_origin_id = origin.id
+    @rate.district_target_id = target.id
     respond_to do |format|
       if @rate.save
         format.html { redirect_to @rate, flash: { success: 'Rate was successfully created.' } }
         format.json { render :show, status: :created, location: @rate }
       else
-        format.html { render :new }
+        format.html { redirect_to rates_new_path }
         format.json { render json: @rate.errors, status: :unprocessable_entity }
       end
     end

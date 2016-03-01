@@ -18,12 +18,12 @@
           <% @rates.each do |rate| %>
             <tr>
               <td><%= rate.id %></td>
-              <td><%= link_to rate.origin.name, rate.origin %></td>
-              <td><%= link_to rate.target.name, rate.target %></td>
+              <td><%= link_to rate.origin.name, rate.origin if rate.origin.present? %></td>
+              <td><%= link_to rate.target.name, rate.target if rate.target.present? %></td>
               <td><%= rate.price.to_f %></td>
-              <td><%= link_to 'Show', rate %></td>
-              <td><%= link_to 'Edit', edit_rate_path(rate) %></td>
-              <td><%= link_to 'Destroy', rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Show', rate, class: "btn btn-info btn-sm" %></td>
+              <td><%= link_to 'Edit', edit_rate_path(rate), class: "btn btn-primary btn-sm" %></td>
+              <td><%= link_to 'Destroy', rate, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
             </tr>
           <% end %>
         </tbody>

@@ -1,38 +1,34 @@
-<header class="banner-top">
-  <div class="nav-primary-wrap">
-    <div class="container">
-      <nav class="nav-primary" role="navigation">
-        <ul id="menu-primary-navigation" class="nav">
-          <li class="menu-item menu-screencasts"><%= link_to "Home", '/' %></li>
-          <% if user_signed_in? %>
-            <% if current_user.admin? %>
-              <li class="menu-item menu-plugins"><%= link_to "Bairros", districts_path %> </li>
-              <li class="menu-item menu-books"><%= link_to "Confirmar Tarifas", table_prices_path  %></li>
-              <li class="menu-item menu-books"><%= link_to "Novas Tarifas", rates_path  %></li>
-              <li class="menu-item menu-books"><%= link_to "Tarifas", search_tax_index_path  %></li>
-            <% else %>
-              <li class="menu-item menu-books"><%= link_to "Novas Tarifas", table_prices_path  %></li>
-              <li class="menu-item menu-books"><%= link_to "Tarifas", search_tax_index_path  %></li>
-            <% end %>
-          <% end %>
-
-          <% if user_signed_in? %>
-            <li class="menu-item menu-podcast"><%= link_to "Sair", destroy_user_session_path, method: "delete" %></li>
-          <% end %>
-
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-
-<header class="banner banner-sage" role="banner">
-    <div class="container">
-        <a class="project-logo" href="">
-        <i class="icon-sage"></i>
-        <b></b>
-        <%= image_tag("logo.png", alt:"Servos Taxi") %>
-        </a>
-    </div>
-</header>
-  
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top shadow">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navabar">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <%= link_to "Servos Taxi", root_path, class: "navbar-brand" %>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <% if user_signed_in? %>
+                      <% if current_user.admin? %>
+                        <%= render "layouts/header_admin" %>
+                      <% else %>
+                        <%= render "layouts/header_user" %>
+                      <% end %>
+                    <% end %>   
+                    <ul class="nav navbar-nav navbar-right">
+                      <% if user_signed_in? %>
+                        <li><%= link_to "Sair", destroy_user_session_path, method: "delete" %></li>
+                      <% else %>                  
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                        <li><%= link_to "Login", new_user_session_path %></li>
+                      <% end %>                    
+                    </ul>
+                </div>
+                <!-- /.nav-collapse -->
+            </div>
+        </nav>
+        <!-- /.fixed navbar -->
