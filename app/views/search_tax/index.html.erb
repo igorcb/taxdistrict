@@ -1,10 +1,8 @@
 <%= form_tag({:controller => "search_tax", :action => "search"}, :method => "get", :remote => true) do |f| %>
 
   <div class="center form-group">
-    <%= label_tag "rate[district_origin_id]", "ORIGEM:" %>
-    <%= autocomplete_field_tag 'rate[district_origin_id]', '', autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase"  %>
-    <%= label_tag "rate[district_origin_id]", "DESTINO:" %>
-    <%= autocomplete_field_tag 'rate[district_target_id]', '', autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase"  %>    
+    <%= autocomplete_field_tag 'rate[district_origin_id]', '', autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase", placeholder: "Informe a origem"  %>
+    <%= autocomplete_field_tag 'rate[district_target_id]', '', autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase", placeholder: "Informe o destino" %>    
     <%= submit_tag("[+] Consulta", id: "soma_registro", class: "btn btn-success btn-sm") %> 
     <%= link_to 'Limpar', {:controller => 'search_tax', :action => 'index'}, class: 'btn btn-primary btn-sm' %>    
   </div>
@@ -61,7 +59,7 @@ function sumPrice() {
     sum = sum + parseFloat(elements[i].innerHTML);
     };
   
-  $('#result_soma').html("<div class='alert alert-success center'><strong>Total: "+sum.formatMoney(2, ',', '.')+"</strong></div>");
+  $('#result_soma').html("<div class='alert alert-success-center'><strong>Total: "+sum.formatMoney(2, ',', '.')+"</strong></div>");
   
 
 }

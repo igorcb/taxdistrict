@@ -2,23 +2,29 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="form-group">
-    <%= f.label :district_origin_id, "Origem" %><br>
-    <%= f.select(:district_origin_id, District.order(:name).collect {|g| [g.name, g.id]}, {include_blank: "Informe a Origem"}, {class: "form-control"} ) %>
+    <%#= f.label :district_origin_id, "Origem" %><br>
+    <%#= f.select(:district_origin_id, District.order(:name).collect {|g| [g.name, g.id]}, {include_blank: "Informe a Origem"}, {class: "form-control"} ) %>
   </div>
   
   <div class="form-group">
-    <%= f.label :district_target_id, "Destino" %><br>
-    <%= f.select(:district_target_id, District.order(:name).collect {|g| [g.name, g.id]}, {include_blank: "Informe o Destino"}, {class: "form-control"} ) %>
+    <%#= f.label :district_target_id, "Destino" %><br>
+    <%#= f.select(:district_target_id, District.order(:name).collect {|g| [g.name, g.id]}, {include_blank: "Informe o Destino"}, {class: "form-control"} ) %>
   </div>
   
   <div class="form-group">
-    <%= f.label :price, "Valor" %><br>
-    <%= f.text_field :price, {class: "form-control"} %>
+    <%#= f.label :price, "Valor" %><br>
+    <%#= f.text_field :price, {class: "form-control"} %>
   </div>
+
+  <div class="center form-group">
+    <%= f.autocomplete_field :district_origin_id, autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase", placeholder: "Informe a origem"  %>
+    <%= f.autocomplete_field :district_target_id, autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase", placeholder: "Informe o destino"  %>
+    <%= f.number_field :price, size: 10, placeholder: "0.00"   %>
+     <%= f.submit "Salvar", class: "btn btn-primary" %>    
+  </div>
+
   
-  <div class="form-group">
-    <%= f.submit "Salvar", class: "btn btn-primary" %>
-    <%= link_to "Exibir",  rate_path(@rate), class: "btn btn-info" if !@rate.new_record? %>
+  <div class="form-group center">
     <%= link_to "Listar Todos", rates_path, class: "btn btn-default" %>
   </div>
 <% end %>
