@@ -1,3 +1,20 @@
+.qr-code {
+  width: 120px;
+  float: left;
+  margin-top: 600px;
+  margin-left: -190px;
+}
+
+.store-badge {
+  width: 100px;
+  float: right;
+  margin-top: 650px;
+}
+
+.store-badge img {
+  width: 180px;
+}
+
 .jumbotron.main-banner {
     background-color: #FBCC02;
     margin-top: auto;
