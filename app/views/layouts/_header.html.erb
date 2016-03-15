@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     </button>
-                    <!-- script to remove internal banner when user is logged in -->
+                    <!-- script to remove internal banner when user is logged in and in the root_path -->
                     <% if user_signed_in? and current_page?('/') %>
                         <%= link_to "Servos Taxi", root_path, class: "navbar-brand" %>
                         <script type="text/javascript">
