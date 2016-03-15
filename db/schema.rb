@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218165459) do
+ActiveRecord::Schema.define(version: 20160221134835) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "districts", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "rates", force: :cascade do |t|
@@ -30,9 +31,10 @@ ActiveRecord::Schema.define(version: 20160218165459) do
   create_table "table_prices", force: :cascade do |t|
     t.integer  "district_origin_id"
     t.integer  "district_target_id"
-    t.decimal  "price"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.decimal  "price",              precision: 10, scale: 2,                 null: false
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+    t.boolean  "confirmed",                                   default: false
   end
 
   create_table "users", force: :cascade do |t|
