@@ -24,15 +24,27 @@
 }
 
 .caption {
-    padding: 10px;
-    margin-left: 10px;
+    padding: 0px;
+    margin-left: 0px;
     margin-top: -400px;
-    color: #FFF;
     z-index: 1000;
     position: absolute;
     width: 550px;
     text-align: left;
-    text-shadow: 2px 2px 10px #000;
+}
+
+.qr-code {
+  margin-left: -210px;
+}
+
+.badge-playstore {
+    width: 220px;
+    margin-top: 80px;
+    margin-left: 77px;
+}
+
+.badge-playstore img{
+    width: 220px;
 }
 
 .marketing {
@@ -164,4 +176,29 @@ footer {
 
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
    background-color: #fbcc02;
+}
+
+@media only screen and (max-width: 720px) {
+    .qr-code {
+      margin-top: 40px;
+      margin-left: -50px;
+    }
+
+    .qr-code img {
+      width: 30px;
+    }
+
+    .badge-playstore {
+      margin-top: -20px;
+      margin-left: 160px;
+    }
+
+    .badge-playstore img{
+        width: 80px;
+    }
+
+    .carousel-caption {
+      width: 100px;
+      height: 90px;
+    }
 }
