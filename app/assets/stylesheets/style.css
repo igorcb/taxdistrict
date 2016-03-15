@@ -1,3 +1,15 @@
+.navbar {
+   background-color: rgba(25, 25, 25, 0.9)
+}
+
+.navbar-inverse .navbar-brand {
+    color: #FBCC02;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #FBCC02;
+}
+
 .jumbotron.main-banner {
     background-color: #FBCC02;
     margin-top: auto;
