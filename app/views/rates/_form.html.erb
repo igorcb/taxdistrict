@@ -17,10 +17,18 @@
   </div>
 
   <div class="center form-group">
-    <%= f.autocomplete_field :district_origin_id, autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase", placeholder: "Informe a origem"  %>
-    <%= f.autocomplete_field :district_target_id, autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase", placeholder: "Informe o destino"  %>
-    <%= f.number_field :price, size: 10, placeholder: "0.00"   %>
-     <%= f.submit "Salvar", class: "btn btn-primary" %>    
+    <% if @rate.new_record? %>
+      <%= f.autocomplete_field :district_origin_id, autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase", placeholder: "Informe a origem"  %>
+      <%= f.autocomplete_field :district_target_id, autocomplete_district_name_districts_path, :size => 30, style: "text-transform:uppercase", placeholder: "Informe o destino"  %>
+      <%= f.number_field :price, size: 10, placeholder: "0.00" %>
+    <% else %>
+      <%= text_field_tag :district_origin_id, @rate.origin.name, disabled: true %>
+      <%= text_field_tag :district_origin_id, @rate.target.name, disabled: true %>
+      <%= f.number_field :price, size: 10, placeholder: "0.00" %>
+    <% end %>    
+
+    <%= f.submit "Salvar", class: "btn btn-primary" %>    
+
   </div>
 
   
