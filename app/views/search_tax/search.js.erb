@@ -1,5 +1,6 @@
 <% if @rate.nil? -%>
   $("#messages").hide(300);
+  $("#messages").empty();
   $("#messages").append("<div class='alert alert-danger'>Origem e destino não encontrado.</div>");
   $("#messages").show(300);
 <% else -%>
