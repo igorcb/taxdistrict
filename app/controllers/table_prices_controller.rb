@@ -53,7 +53,6 @@ class TablePricesController < ApplicationController
   def confirm
     @table = TablePrice.find(params[:id])
     @table.confirm
-    puts ">>>>>>>>>>>>>>>>>>> Confirm do controller"
     redirect_to table_prices_path
   end
 

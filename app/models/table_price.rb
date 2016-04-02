@@ -23,15 +23,24 @@ class TablePrice < ActiveRecord::Base
 
 	end
 
+
 	def confirm
-    ActiveRecord::Base.transaction do
-    	origin = District.find(self.district_origin_id)
-    	target = District.find(self.district_target_id)
-      price  = self.price
-      puts ">>>>>>>>>>>>>>>>>>> Confirm do Model"
-      TablePrice.where(id: self.id).update_all(confirmed: true)
-      puts ">>>>>>>>>>>>>>>>>>> update confirmed model"
-      Rate.create!(district_origin_id: self.district_origin_id, district_target_id: self.district_target_id, price: price)
+		if rate_not_exist?
+	    ActiveRecord::Base.transaction do
+	    	origin = District.find(self.district_origin_id)
+	    	target = District.find(self.district_target_id)
+	      price  = self.price
+	      #puts ">>>>>>>>>>>>>>>>>>> Confirm do Model"
+	      TablePrice.where(id: self.id).update_all(confirmed: true)
+	      #puts ">>>>>>>>>>>>>>>>>>> update confirmed model"
+	      Rate.create!(district_origin_id: self.district_origin_id, district_target_id: self.district_target_id, price: price)
+	      #procura pela rota invertida
+	      rate_invert = Rate.find_by_district_origin_id_and_district_target_id(self.district_target_id, self.district_origin_id)
+	      #cadastra invertendo a rota
+	      Rate.create!(district_origin_id: self.district_target_id, district_target_id: self.district_origin_id, price: price) if rate_invert.nil?
+	    end
+    else
+    	TablePrice.where(id: self.id).update_all(confirmed: true)
     end
 
 	end
