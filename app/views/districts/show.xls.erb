@@ -24,7 +24,7 @@
     <% @district.target_order.each do |rate| %>
       <Row>
         <Cell><Data ss:Type="String"><%= rate.target.name %></Data></Cell>
-        <Cell><Data ss:Type="String"><%=  rate.price.to_f %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= rate.price.to_f %></Data></Cell>
       </Row>
     <% end %>
       <Row>
