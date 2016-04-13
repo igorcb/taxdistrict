@@ -3,11 +3,17 @@ class DistrictsController < ApplicationController
   before_action :set_district, only: [:show, :edit, :update, :destroy]
 
   autocomplete :district, :name, full: true, limit: 20
+  #respond_to :html
 
   # GET /districts
   # GET /districts.json
   def index
     @districts = District.order(:name)
+    filename = "district.xls"
+    respond_to do |format|
+      format.html
+      format.xls #{ headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" }
+    end
   end
 
   # GET /districts/1
