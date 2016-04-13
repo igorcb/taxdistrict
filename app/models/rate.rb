@@ -8,7 +8,9 @@ class Rate < ActiveRecord::Base
   
 	validates_uniqueness_of :district_origin_id, :scope => [:district_target_id]
 
-	after_save :modifi_price_invert_rate
+  scope :origin_and_target, -> { joins(:origin, :target).order('districts.name asc') }
+	
+  after_save :modifi_price_invert_rate
 
   def modifi_price_invert_rate
     #procura pela rota invertida
@@ -20,5 +22,16 @@ class Rate < ActiveRecord::Base
       Rate.where(id: rate_invert.id).update_all(price: self.price)    	
     end
   end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << ["Origem", "Destino", "Valor"]
+      all.each do |rate|
+        row = [rate.origin.name, rate.target.name, rate.price.to_f]
+        csv << row
+      end
+    end
+  end 
+
 
 end
