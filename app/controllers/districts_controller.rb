@@ -19,6 +19,11 @@ class DistrictsController < ApplicationController
   # GET /districts/1
   # GET /districts/1.json
   def show
+    filename = "#{@district.name}.xls"
+    respond_to do |format|
+      format.html
+      format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" }
+    end
   end
 
   # GET /districts/new
