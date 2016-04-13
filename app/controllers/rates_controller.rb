@@ -10,7 +10,7 @@ class RatesController < ApplicationController
     #@rates = Rate.paginate(page: params[:page])
     #@rates = Rate.joins(:origin, :target).order('districts.name asc')
     #@rates = Rate.all
-    @rates = Rate.joins(:origin, :target).order('districts.name asc')
+    @rates = Rate.joins(:origin, :target).order('districts.name asc, targets_rates.name asc')
     filename = "tabela_de_preco.xls"
     respond_to do |format|
       format.html
