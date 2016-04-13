@@ -19,10 +19,12 @@
     <Table>
       <Row>
         <Cell><Data ss:Type="String">Bairro</Data></Cell>
+        <Cell><Data ss:Type="String">Qtde</Data></Cell>
       </Row>
     <% @districts.each do |district| %>
       <Row>
         <Cell><Data ss:Type="String"><%= district.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= district.rates.count %></Data></Cell>
       </Row>
     <% end %>
       <Row>

@@ -12,6 +12,10 @@ class District < ActiveRecord::Base
   	Rate.includes(:target).where(district_origin_id: self.id).order('districts.name asc')
   end
 
+  def rates
+    Rate.where(district_origin_id: self.id)
+  end
+
   private 
     def can_destroy?
       # if self.origin.present? || 
