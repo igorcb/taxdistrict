@@ -6,11 +6,15 @@ class Rate < ActiveRecord::Base
 	validates :district_target_id, presence: true
   validates :price, presence: true
   
-	validates_uniqueness_of :district_origin_id, :scope => [:district_target_id]
+	validates_uniqueness_of :district_origin_id, :scope => [:district_target_id], if: :diff_origin_and_target?
 
   scope :origin_and_target, -> { joins(:origin, :target).order('districts.name asc') }
 	
   after_save :modifi_price_invert_rate
+
+  def diff_origin_and_target?
+    district_origin_id !=  district_target_id
+  end
 
   def modifi_price_invert_rate
     #procura pela rota invertida
