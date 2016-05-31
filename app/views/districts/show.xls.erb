@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+
+  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+    <WindowHeight>6795</WindowHeight>
+    <WindowWidth>8460</WindowWidth>
+    <WindowTopX>120</WindowTopX>
+    <WindowTopY>15</WindowTopY>
+    <ProtectStructure>False</ProtectStructure>
+    <ProtectWindows>False</ProtectWindows>
+  </ExcelWorkbook>
+
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Bairro</Data></Cell>
+        <Cell><Data ss:Type="String">Valor</Data></Cell>
+      </Row>
+    <% @district.target_order.each do |rate| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= rate.target.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= rate.price.to_f %></Data></Cell>
+      </Row>
+    <% end %>
+      <Row>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

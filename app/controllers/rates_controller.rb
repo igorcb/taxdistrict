@@ -1,11 +1,23 @@
+require 'iconv'
 class RatesController < ApplicationController
+  BOM = "\377\376" #Byte Order Mark
   before_filter :authenticate_user!
   before_action :set_rate, only: [:show, :edit, :update, :destroy]
 
   # GET /rates
   # GET /rates.json
   def index
-    @rates = Rate.paginate(page: params[:page])
+    #@rates = Rate.paginate(page: params[:page])
+    #@rates = Rate.joins(:origin, :target).order('districts.name asc')
+    #@rates = Rate.all
+    @rates = Rate.joins(:origin, :target).order('districts.name asc, targets_rates.name asc')
+    filename = "tabela_de_preco.xls"
+    respond_to do |format|
+      format.html
+      #format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" }
+      format.csv { export_csv(@rates) }
+      #format.csv { render text: @rates.to_csv }
+    end
   end
 
   # GET /rates/1
@@ -75,4 +87,13 @@ class RatesController < ApplicationController
     def rate_params
       params.require(:rate).permit(:district_origin_id, :district_target_id, :price)
     end
+
+    def export_csv(rates)
+      #filename = I18n.l(Time.now, :format => :short) + "- TabelePreco.csv"
+      filename = "TabelePreco.csv"
+      content = rates.to_csv
+      #content = BOM + Iconv.conv("utf-16le", "utf-8", content)
+      send_data content, :filename => filename
+    end
+
 end

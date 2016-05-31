@@ -34,17 +34,29 @@
 }
 
 .qr-code {
-  margin-left: -210px;
+  margin-top: 20px;
+  margin-left: -207px;
+}
+
+.badge-ios {
+  margin-top: 90px;
+  margin-left: -95px;
+  display:inline-block;
+  overflow:hidden;
+}
+
+.badge-ios img {
+  height:50px;
 }
 
 .badge-playstore {
-    width: 220px;
-    margin-top: 80px;
-    margin-left: 77px;
+    margin-top: 90px;
+    /* margin-top: 80px; */
+    margin-left: -40px;
 }
 
 .badge-playstore img{
-    width: 220px;
+    width: 165px;
 }
 
 .marketing {
@@ -169,8 +181,8 @@ footer {
 }
 
 .taxes-table {
-    width: 70%; 
-    margin-left: auto; 
+    width: 70%;
+    margin-left: auto;
     margin-right: auto;
 }
 
@@ -179,8 +191,19 @@ footer {
 }
 
 @media only screen and (max-width: 720px) {
+    .badge-ios {
+      margin-top: -33px;
+      margin-left: -40px;
+      display:inline-block;
+      overflow:hidden;
+    }
+
+    .badge-ios img {
+      width:60px;
+    }
+
     .qr-code {
-      margin-top: 40px;
+      margin-top: 44px;
       margin-left: -50px;
     }
 
@@ -189,12 +212,13 @@ footer {
     }
 
     .badge-playstore {
-      margin-top: -20px;
-      margin-left: 160px;
+      margin-top: -39px;
+      margin-left: 55px;
+      margin-right: -41px;
     }
 
     .badge-playstore img{
-        width: 80px;
+        width: 60px;
     }
 
     .carousel-caption {
