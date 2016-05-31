@@ -1,42 +1,35 @@
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@user.errors.count, "error") %>
-        prohibitive this user from being saved:
-      </h2>
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-        <li>
-          <%= msg %>
-        </li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email %>
-    <br/>
     <%= f.email_field :email, class: 'form-control' %>
-    <br/>
   </div>
 
   <% if action_name == 'new' %>
-    <div class="field">
+    <div class="form-group">
       <%= f.label :password %>
-      <br/>
       <%= f.password_field :password, class: 'form-control' %>
     </div>
-    <div class="field">
+
+    <div class="form-group">
       <%= f.label :password_confirmation %>
-      <br/>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
+
   <% end %>
 
-  <div class="actions">
-    <%= f.submit :class => "btn btn-inverse" %>
+  <div class="form-group">
+    <%= f.label "", class: "checkbox-inline" do %>
+    <%= f.check_box :admin %> Admin?
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Salvar", class: "btn btn-primary" %>
+    <%= link_to "Exibir", user_path(@user), class: "btn btn-info" if !@user.new_record? %>
+    <%= link_to "Listar Todos", users_path, class: "btn btn-default" %>
   </div>
 
 <% end %>
+

@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_filter :user_admin
+    
 
   # GET /users
   def index
@@ -57,6 +60,14 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:user_type, :status, :name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :password_confirmation, :admin)
     end
+
+    def user_admin
+      unless current_user.admin?
+        flash[:warning] = 'You have no access to users'
+        redirect_to(search_tax_index_path)
+      end
+    end
+
 end
