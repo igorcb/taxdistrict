@@ -1,0 +1,14 @@
+<%= devise_error_messages! %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
+  <h2 class="form-signin-heading" style="font-size: 22px">Acesse sua Conta</h2>
+
+  <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
+  <%= f.password_field :password, autocomplete: "off", placeholder: "Senha", class:"form-control" %>
+
+  <% if devise_mapping.rememberable? -%>
+      <%= f.check_box :remember_me %>
+      <%= f.label "Lembrar-me" %>
+  <% end -%>
+
+  <%= f.submit "Log in", class: "btn btn-lg btn-danger btn-block"%>
+<% end %>
