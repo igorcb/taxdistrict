@@ -7,11 +7,4 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     search_tax_index_path
   end
-
-
-	def set_logger_username
-	  Thread.current["username"] = current_user.email || "guest"
-	  yield
-	  Thread.current["username"] = nil
-	end  
 end
