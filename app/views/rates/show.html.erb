@@ -21,6 +21,34 @@
   </div>
 </div>
 
+<div class="panel panel-default">
+  <div class="panel-heading">Log de Modificações</div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table id="list_table_price" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Acao</th>
+            <th>Modificação</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @rate.audits.where(auditable_type: 'Rate').each do |audit| %>
+            <tr>
+              <td><%= audit.user.email %></td>
+              <td><%= audit.action %></td>
+              <td><%= audit.audited_changes %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>    
+
+  </div>
+</div>
+
 <div class="form-group">
   <%= link_to 'Editar',  edit_rate_path(@rate) , class: "btn btn-primary" %>
   <%= link_to 'Listar Todos', search_tax_index_path, class: "btn btn-default" %>

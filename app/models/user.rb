@@ -5,4 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   default_scope { order(:email) } 
+
+  
+  has_many :rates
+  #audited
+  audited only: [:email, :admin]
+  audited associated_with: :rate
 end

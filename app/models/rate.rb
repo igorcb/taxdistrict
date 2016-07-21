@@ -12,6 +12,8 @@ class Rate < ActiveRecord::Base
 	
   after_save :modifi_price_invert_rate
 
+  audited
+  
   def diff_origin_and_target?
     district_origin_id !=  district_target_id
   end

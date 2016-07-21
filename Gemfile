@@ -18,6 +18,8 @@ gem 'jquery-ui-rails'
 gem 'rails4-autocomplete'
 gem 'devise'
 gem 'iconv'
+gem 'audited-activerecord', '~> 4.2'
+
 
 group :development, :test do
   gem 'byebug'
