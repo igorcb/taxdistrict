@@ -31,6 +31,10 @@ class Rate < ActiveRecord::Base
       Rate.where(id: rate_invert.id).update_all(price: self.price)    	
       # cadastra log
       user = find_current_user
+      if user.nil?
+        user = User.find_by_email('servoscidade@servostaxi.com.br') 
+      end
+      puts ">>>>>>>>>>. user: #{user.id}"
       rate_invert.audits.create!(auditable_type: "Rate", user_id: user.id, user_type: "User", action: "update", audited_changes: @price_modify, version: count_version_audited(rate_invert) )
     end
   end
