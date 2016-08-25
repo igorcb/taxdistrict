@@ -30,6 +30,7 @@
           <tr>
             <th>Usuario</th>
             <th>Acao</th>
+            <th>Data</th>
             <th>Modificação</th>
           </tr>
         </thead>
@@ -37,9 +38,14 @@
         <tbody>
           <% @rate.audits.where(auditable_type: 'Rate').each do |audit| %>
             <tr>
-              <td><%= audit.user.email %></td>
+              <td><%= parse_audit_email(audit.user) %></td>
               <td><%= audit.action %></td>
-              <td><%= audit.audited_changes %></td>
+              <td>
+              <%#= I18n.l(audit.created_at, format: '%d/%m/%Y')%> <%#= I18n.l(audit.created_at, format: '%H:%M:%S') %>
+              <%#=  Time.zone.parse(I18n.l(audit.created_at, format: '%d/%m/%Y %H:%M:%S'))  %>
+              <%= Time.strptime('2016-08-25 16:10:37', '%d/%m/%Y %H:%M:%S').in_time_zone(Time.zone) %>
+              </td>
+              <td><%= parse_audit_rate(audit.action, audit.audited_changes)%></td>
             </tr>
           <% end %>
         </tbody>

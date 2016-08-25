@@ -10,7 +10,9 @@ class Rate < ActiveRecord::Base
 
   scope :origin_and_target, -> { joins(:origin, :target).order('districts.name asc') }
 	
+  before_save :set_values_price
   after_save :modifi_price_invert_rate
+
 
   audited
   
@@ -20,13 +22,24 @@ class Rate < ActiveRecord::Base
 
   def modifi_price_invert_rate
     #procura pela rota invertida
+
     rate_invert = Rate.find_by_district_origin_id_and_district_target_id(self.district_target_id, self.district_origin_id)
     #cadastra ou atualiza o preco da rota invertida a rota
     if rate_invert.nil?
     	Rate.create!(district_origin_id: self.district_target_id, district_target_id: self.district_origin_id, price: price) 
     else
       Rate.where(id: rate_invert.id).update_all(price: self.price)    	
+      # cadastra log
+      user = find_current_user
+      rate_invert.audits.create!(auditable_type: "Rate", user_id: user.id, user_type: "User", action: "update", audited_changes: @price_modify, version: count_version_audited(rate_invert) )
     end
+  end
+
+  def set_values_price
+     #+ JSON.parse(self.changes['price'].to_json)]
+     @price_modify = {"price" => self.changes['price']}
+     #puts ">>>>>>>>>>>>>> parse: #{parse.class}"
+     #parse = JSON.parse(@price_modify)
   end
 
   def self.to_csv
@@ -38,6 +51,21 @@ class Rate < ActiveRecord::Base
       end
     end
   end 
+
+  def find_current_user
+  (1..Kernel.caller.length).each do |n|
+    RubyVM::DebugInspector.open do |i|
+      current_user = eval "current_user rescue nil", i.frame_binding(n)
+      return current_user unless current_user.nil?
+    end
+  end
+  return nil
+  end
+
+  private
+    def count_version_audited(rate)
+      rate.audits.count
+    end
 
 
 end
