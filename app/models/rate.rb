@@ -57,15 +57,15 @@ class Rate < ActiveRecord::Base
     end
   end 
 
-  def find_current_user
-  (1..Kernel.caller.length).each do |n|
-    RubyVM::DebugInspector.open do |i|
-      current_user = eval "current_user rescue nil", i.frame_binding(n)
-      return current_user unless current_user.nil?
-    end
-  end
-  return nil
-  end
+  # def find_current_user
+  # (1..Kernel.caller.length).each do |n|
+  #   RubyVM::DebugInspector.open do |i|
+  #     current_user = eval "current_user rescue nil", i.frame_binding(n)
+  #     return current_user unless current_user.nil?
+  #   end
+  # end
+  # return nil
+  # end
 
   private
     def count_version_audited(rate)
