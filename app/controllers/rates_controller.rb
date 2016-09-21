@@ -9,7 +9,7 @@ class RatesController < ApplicationController
 
   def import
     Rate.import(params[:origin_id], params[:file])
-    redirect_to search_tax_index_path notices: "Tabela importada com sucesso."
+    redirect_to search_tax_index_path success: "Tabela importada com sucesso."
   end
 
   # GET /rates

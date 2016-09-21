@@ -3,7 +3,7 @@
 <%= form_tag import_rates_path, multipart: true do %>
   <div class="form-group">
     <%= label_tag :origin_id, "Origem"  %> <br>
-    <%= select_tag 'origin_id', options_from_collection_for_select(District.all, 'id', 'name'), :prompt => "Selecione o bairro de origem", class: "form-control" %>
+    <%= select_tag 'origin_id', options_from_collection_for_select(District.order(:name), 'id', 'name'), :prompt => "Selecione o bairro de origem", class: "form-control" %>
   </div>
   
   <div class="form-group">
