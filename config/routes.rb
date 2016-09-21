@@ -9,13 +9,19 @@ Rails.application.routes.draw do
 
   #match '/table_prices/confirm/:id', :controller=>'table_prices', :action => 'confirm', via: [:get, :post]
   #match '/dashboard_agent', :controller => 'static_pages', :action => 'dashboard_agent', via: [:get, :post]
-  resources :rates
+  resources :rates do
+    collection {post :import}
+  end
+
+  match '/rates_import', :controller => 'rates', :action => 'rates_import', via: [:get, :post]
+ 
   root 'static_pages#home'
 
   get 'search' => 'search_tax#search'
 
   get 'search_tax/index'
   get 'search_tax/search'
+
 
   resources :districts do
     get :autocomplete_district_name, :on => :collection

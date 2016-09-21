@@ -34,7 +34,7 @@ class Rate < ActiveRecord::Base
       #if user.nil?
       user = User.find_by_email('servoscidade@servostaxi.com.br') 
       #end
-      puts ">>>>>>>>>>. user: #{user.id}"
+      #puts ">>>>>>>>>>. user: #{user.id}"
       # cadastra log
       rate_invert.audits.create!(auditable_type: "Rate", user_id: user.id, user_type: "User", action: "update", audited_changes: @price_modify, version: count_version_audited(rate_invert) )
     end
@@ -56,6 +56,32 @@ class Rate < ActiveRecord::Base
       end
     end
   end 
+
+  def self.import(origin_id, file)
+    CSV.foreach(file.path, headers: true) do |row|
+      puts ">>>>>>>>>>>>>>>>. #{row[0]}"
+      target = District.where(name: row[0]).first_or_create 
+      price = row[1]
+      rate = Rate.find_by_district_origin_id_and_district_target_id(origin_id, target.id)
+      if rate.nil?
+        Rate.create!(district_origin_id: origin_id, district_target_id: target.id, price: price) 
+      else
+       rate.update_attributes!(price: price)
+      end 
+    end
+  end
+
+  # def self.import(file)
+  #   CSV.foreach(file.path, headers: true) do |row|
+  #     target = District.where(name: row[0]).first_or_create 
+  #     rate = Rate.find_by_district_origin_id_and_district_target_id(origem, target.id)
+  #     if rate.nil?
+  #       Rate.create!(district_origin_id: origin, district_target_id: target.id, price: price) 
+  #     else
+  #      rate.update_attributes!(price: price)
+  #     end 
+  #   end
+  # end
 
   # def find_current_user
   # (1..Kernel.caller.length).each do |n|

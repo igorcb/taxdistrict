@@ -4,6 +4,14 @@ class RatesController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_rate, only: [:show, :edit, :update, :destroy]
 
+  def rate_import
+  end
+
+  def import
+    Rate.import(params[:origin_id], params[:file])
+    redirect_to search_tax_index_path notices: "Tabela importada com sucesso."
+  end
+
   # GET /rates
   # GET /rates.json
   def index
